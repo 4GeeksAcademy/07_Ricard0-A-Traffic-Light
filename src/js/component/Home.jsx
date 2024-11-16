@@ -1,20 +1,46 @@
-import React from "react";
-import { useState } from "react";
-import '../../styles/Home.css'
+import React, { useState } from "react";
 
 const Home = () => {
-	const [selectedColor, setSelectedColor] = useState("red")
-	return (
-		<>
-		<div className="stick">
-			</div>
-		<div className="traffic-light">
-			<div role="button" onClick={()=>{setSelectedColor("red")}} className={"light red " + (selectedColor === "red" ? " glow" : "")  }></div>
-			<div role="button" onClick={()=>{setSelectedColor("yellow")}} className={"light yellow" + (selectedColor === "yellow" ? " glow" : "")}></div>
-			<div role="button" onClick={()=>{setSelectedColor("green")}} className={"light green" +(selectedColor === "green" ? " glow" : "") }></div>
-		</div>
-		</>
-	)
-}
+  const [selectedBall, setSelectedBall] = useState(null);
+
+  // Estilo para el brillo
+  const transparencia = {
+    boxShadow: "0 0 10px 5px rgba(255, 255, 255, 0.9)",
+  };
+
+  return (
+    <div className="master">
+      <div className="stick"></div>
+      <div className="semaforo">
+        {/* Bola roja */}
+        <div
+          className="ballOne"
+          style={{
+            ...(selectedBall === 0 ? transparencia : {}),
+          }}
+          onClick={() => setSelectedBall(0)}
+        ></div>
+
+        {/* Bola amarilla */}
+        <div
+          className="ballTwo"
+          style={{
+            ...(selectedBall === 1 ? transparencia : {}),
+          }}
+          onClick={() => setSelectedBall(1)}
+        ></div>
+
+        {/* Bola verde */}
+        <div
+          className="ballThree"
+          style={{
+            ...(selectedBall === 2 ? transparencia : {}),
+          }}
+          onClick={() => setSelectedBall(2)}
+        ></div>
+      </div>
+    </div>
+  );
+};
 
 export default Home;
