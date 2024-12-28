@@ -1,12 +1,19 @@
 import React, { useState } from "react";
 
 const Home = () => {
-  const [selectedBall, setSelectedBall] = useState(null);
+  // En vez de reasignacion como variables, usamos useStates
+  // Formula Variable NewVariable = useState(CurrentVariableValue)
+  // const [selectedBall, setSelectedBall] = useState(null);
+
+
+  const [value, setValue] = useState(null)
 
   // Estilo para el brillo
   const transparencia = {
     boxShadow: "0 0 10px 5px rgba(255, 255, 255, 0.9)",
   };
+
+
 
   return (
     <div className="master">
@@ -15,9 +22,14 @@ const Home = () => {
         {/* Bola roja */}
         <div
           className="ballOne"
+          // Claro style con doble corchetes accedes a la posiblidad de agregar Css como shorthand(quickly) 
+          // el spread, hace lo que tiene que hacer, pero si le pongo una condicion en medio como este ternario
+          // pues espera a que cosa va a hacerle spread, sera transparencia ?, o... Objeto Vacio
           style={{
-            ...(selectedBall === 0 ? transparencia : {}),
+              ...(selectedBall === 0 ? transparencia : {}),
           }}
+          // En cada click, colocamos como valor de la bola exactamente como el ternario la necesita 
+          // para que ... usuarioClick == BolaSombreada
           onClick={() => setSelectedBall(0)}
         ></div>
 
@@ -44,3 +56,9 @@ const Home = () => {
 };
 
 export default Home;
+
+
+
+
+
+
